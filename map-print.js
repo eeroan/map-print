@@ -14,9 +14,18 @@ const createImg = (col, row) => Object.assign(document.createElement('img'), {
 })
 const range = amount => Array.from(Array(amount)).map((a, b) => b)
 
-const map = document.getElementById('map');
+const map = document.getElementById('map')
+const throttledFor = (items, fn, delay = 100) => {
+    const callItemWithIndex = (items, fn, i) => {
+        if (i <= items.length - 1) {
+            fn(items[i])
+            setTimeout(() => callItemWithIndex(items, fn, i + 1), delay)
+        }
+    }
+    callItemWithIndex(items, fn, 0)
+}
 
-range(height).forEach(row => {
+throttledFor(range(height), row => {
     map.appendChild(document.createElement('br'))
     range(width).forEach(col =>
         map.appendChild(createImg(x + col - Math.floor(width / 2), y + row - Math.floor(height / 2))))
