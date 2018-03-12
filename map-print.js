@@ -1,9 +1,6 @@
 const params = new URL(document.location).searchParams
 const x = +params.get('x') || 4173
 const y = +params.get('y') || 3155
-//const x = +params.get('x') || 16678
-//const y = +params.get('y') ||  12611
-
 const width = +params.get('w') || 15
 const height = +params.get('h') || 15
 document.title = `x:${x} y:${y}, w:${width}, h:${height}`
@@ -24,6 +21,4 @@ range(height).forEach(row => {
     range(width).forEach(col =>
         map.appendChild(createImg(x + col - Math.floor(width / 2), y + row - Math.floor(height / 2))))
 })
-
-new URL(document.location)
 
